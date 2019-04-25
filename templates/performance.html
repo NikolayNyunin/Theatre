@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="alert alert-primary" role="alert">
+        <h1>{{ performance[1] }}</h1>
+        <h2>{{ performance[2] }}</h2>
+        <h2>{{ performance[3] }}</h2>
+        {% if actors %}
+            <h2>Актёры:</h2>
+        {% endif %}
+        {% for actor in actors %}
+            <div class="alert alert-dark" role="alert">
+                <h3>{{ actor[0] }} {{ actor[1] }} ({{ actor[2] }})</h3>
+            </div>
+        {% endfor %}
+        <h3>Описание:</h3>
+        <h3>{{ performance[5] }}</h3>
+        {% if not in_favourites %}
+            <a class="btn btn-success" href="/performances/{{performance[0]}}/add">Добавить в избранное</a>
+        {% endif %}
+        {% if admin %}
+            <a class="btn btn-warning" href="/performances/{{performance[0]}}/edit">Редактировать описание</a>
+            <a class="btn btn-danger" href="/performances/{{performance[0]}}/delete">Удалить спектакль</a>
+        {% endif %}
+    </div>
+{% endblock %}

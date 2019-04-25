@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Список спектаклей</h1>
+    {% if admin %}
+        <a class="btn btn-primary" href="/add_performance" role="button">Добавить спектакль</a><br>
+    {% endif %}
+    {% for item in performances %}
+        <div class="alert alert-primary" role="alert">
+            <h2><a href="/performances/{{item[0]}}">{{ item[1] }}</a></h2>
+            <h3>{{ item[2] }}</h3>
+            <h4>{{ item[3] }}</h4>
+            {% if not in_favourites[item[0]] %}
+                <a class="btn btn-success" href="/performances/{{item[0]}}/add">Добавить в избранное</a>
+            {% endif %}
+            {% if admin %}
+                <a class="btn btn-warning" href="/performances/{{item[0]}}/edit">Редактировать описание</a>
+                <a class="btn btn-danger" href="/performances/{{item[0]}}/delete">Удалить спектакль</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Избранное</h1>
+    {% for item in favourites %}
+        <div class="alert alert-primary" role="alert">
+            <h2><a href="/performances/{{item[0]}}">{{ item[1] }}</a></h2>
+            <h3>{{ item[2] }}</h3>
+            <h4>{{ item[3] }}</h4>
+            <a class="btn btn-danger" href="/favourites/{{item[0]}}/delete">Удалить из избранного</a>
+        </div>
+    {% endfor %}
+{% endblock %}

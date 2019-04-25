@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Список актёров</h1>
+    {% if admin %}
+        <a class="btn btn-primary" href="/add_actor" role="button">Добавить актёра</a><br>
+    {% endif %}
+    {% for item in actors %}
+        <div class="alert alert-primary" role="alert">
+            <h2><a href="/actors/{{item[0]}}">{{ item[1] }} {{ item[2] }}</a></h2>
+            <h3>{{ item[3] }}</h3>
+            {% if admin %}
+                <a class="btn btn-warning" href="/actors/{{item[0]}}/edit">Редактировать личные данные</a>
+                <a class="btn btn-danger" href="/actors/{{item[0]}}/delete">Удалить страницу актёра</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+{% endblock %}
